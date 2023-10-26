@@ -13,7 +13,7 @@ public class MyList <E> {
     private Node<E> firstNode;
     private Node<E> lastNode;
     private Node<E> actualNode;
-    private int contador;
+    
     
     public MyList(){
         this.firstNode = null;
@@ -25,16 +25,15 @@ public class MyList <E> {
     public void showMyList(){
         Node<E> temporary = this.firstNode;
         while (temporary != null){
-            System.out.println(temporary.getMain());
-//            System.out.println(temporary.getMain.toString());
+            System.out.println(temporary.getMain().toString());
             temporary=temporary.getNextNode();
         }
     }
     
-    public void add(E p){
+    public void add(E p, int index){
         
-        this.contador++;
-        Node<E> newNode = new Node(p,contador);
+        
+        Node<E> newNode = new Node(p,index);
         
         //creas empleado 1 y lo añades
         
@@ -111,33 +110,107 @@ public class MyList <E> {
         this.actualNode = actualNode;
     }
 
-    public int getContador() {
-        return contador;
-    }
-
-    public void setContador(int contador) {
-        this.contador = contador;
-    }
     
     public boolean existe(int numEmpl)
+    { 
+        Node<E> temporary = this.firstNode;
+        while (temporary != null){
+            if(temporary.getIndex() == numEmpl)
+            {
+                return true;
+            }
+            temporary=temporary.getNextNode();
+        }
+        return false;
+    }
+    
+    public int contarNodos()
     {
-        Empleado aux = (Empleado) getActualNode().getMain();
+        int contador = 0;
+        Node<E> temporary = this.firstNode;
         
-        if(numEmpl == aux.getNumero())
-        {
-            return true;
+        while (temporary != null){
+            contador++;
+            temporary=temporary.getNextNode();
         }
-        else
-        {
-            return false;
-        }
+        
+        
+        return contador;
     }
     
     public void intercambiar(int numEmp1, int numEmp2)
     {
+        Node<E> temp = this.firstNode;
+        Node<E> nodo1 = null;
+        Node<E> nodo2 = null;
+        Node<E> aux = null;
         
+        if(existe(numEmp1) && existe(numEmp2))
+        {
+            while(temp != null)
+            {
+                if(temp.getIndex() == numEmp1)
+                {
+                    nodo1 = temp;
+                }
+                else if(temp.getIndex() == numEmp2)
+                {
+                    nodo2 = temp;
+                }
+                
+                temp = temp.getNextNode();
+            }
+            
+            int index = nodo1.getIndex();
+            E e1 = nodo1.getMain();
+            
+            nodo1.setIndex(nodo2.getIndex());
+            nodo1.setMain(nodo2.getMain());
+            
+            nodo2.setIndex(index);
+            nodo2.setMain(e1);
+        }
+        else
+        {
+            System.out.println("No existe alguno de los empleados.");
+        }
+               
     }
     
+    public void ordenar()
+    {
+        Node<E> temporary = firstNode;
+        Node<E> temp2 = temporary.getNextNode();
+        boolean flag = true;
+        int numNodos = contarNodos();
+        
+//        while(flag)
+//        {
+//            flag = false;
+            
+            for(int i=0; i<3; i++)
+            {
+                if(temporary.getIndex() > temp2.getIndex())
+                  {
+                      intercambiar(temporary.getIndex(), temp2.getIndex());
+                  }
+                  temporary=temporary.getNextNode();
+                  temp2 = temp2.getNextNode();
+            }
+//            while (temporary != null && temp2 != null){
+//                if(temporary.getIndex() > temp2.getIndex())
+//                {
+//                    intercambiar(temporary.getIndex(), temp2.getIndex());
+//                }
+//                temporary=temporary.getNextNode();
+//                temp2 = temp2.getNextNode();
+//                
+//            }
+//        }
+       
+       
+          
+    }
     
     
 // Inner class
@@ -148,10 +221,10 @@ public class MyList <E> {
         E main;
         int index = 1;
         
-        public Node(E p, int contador){
+        public Node(E p, int index){
             this.nextNode = null;
             this.main = p;
-            this.index = contador;
+            this.index = index;
         }
         
         public Node<E> getNextNode() {

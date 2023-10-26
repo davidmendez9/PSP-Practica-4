@@ -97,6 +97,11 @@ public abstract class Empleado  {
         this.fechaAlta = fechaAlta;
     }
 
+    @Override
+    public String toString() {
+        return "Empleado{" + "numero=" + numero + ", nombre=" + nombre + ", sueldo=" + sueldo + ", sueldoMaximo=" + sueldoMaximo + ", fechaAlta=" + fechaAlta + '}';
+    }
+
     
     
     

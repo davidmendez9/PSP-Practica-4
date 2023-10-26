@@ -66,9 +66,13 @@ public class Analista extends Empleado implements IFecha {
         {
             return false;
         }
+    }    
+
+    @Override
+    public String toString() {
+        
+        return super.toString() + "Analista{" + "plusAnual=" + plusAnual + ", nombreUsuario=" + nombreUsuario + '}';
     }
-    
-    
-    
+      
     
 }
