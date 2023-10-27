@@ -5,11 +5,13 @@
  */
 package mendezdavidp04;
 
+import java.io.Serializable;
+
 /**
  *
  * @author David
  */
-public abstract class Empleado  {
+public abstract class Empleado implements Serializable {
     private int numero;
     private transient String nombre; // Marcar como transient para evitar la serialización
     private double sueldo;

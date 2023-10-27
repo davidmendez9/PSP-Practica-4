@@ -5,13 +5,14 @@
  */
 package mendezdavidp04;
 
+import java.io.Serializable;
 import java.util.GregorianCalendar;
 
 /**
  *
  * @author David
  */
-public class Programador extends Empleado implements IFecha {
+public class Programador extends Empleado implements IFecha, Serializable {
     
     double sueldoExtra;
     int numeroProgramas; //Num programas realizados

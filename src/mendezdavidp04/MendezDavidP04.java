@@ -5,6 +5,8 @@
  */
 package mendezdavidp04;
 
+import java.util.List;
+
 /**
  *
  * @author David
@@ -46,23 +48,23 @@ public class MendezDavidP04 {
             System.out.println(e.getMessage());
         }
         
+        try
+        {
+            lista.add(new Analista(3, "David", 1200, 1300, new Fecha(03,11, 2015), 2, "pablete"), 3);
+        }catch(Excepciones e){
+            System.out.println(e.getMessage());
+        }
+        
         
        lista.ordenar();
       
        lista.showMyList();
         
-        System.out.println("-----------------------------------------------------------------------------");
+       System.out.println("-----------------------------------------------------------------------------");
        
-      /* try
-        {
-            lista.add(new Analista(1, "David", 1200, 1300, new Fecha(03,11, 2015), 2, "pablete"), 1);
-        }catch(Excepciones e){
-            System.out.println(e.getMessage());
-        }
-        
-        lista.ordenar();
-        
-        lista.showMyList(); */
+       
+       
+              
       
     }
     

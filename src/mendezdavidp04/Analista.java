@@ -5,13 +5,14 @@
  */
 package mendezdavidp04;
 
+import java.io.Serializable;
 import java.util.GregorianCalendar;
 
 /**
  *
  * @author David
  */
-public class Analista extends Empleado implements IFecha {
+public class Analista extends Empleado implements IFecha, Serializable {
     
     double plusAnual;
     String nombreUsuario; //Nombre de usuario

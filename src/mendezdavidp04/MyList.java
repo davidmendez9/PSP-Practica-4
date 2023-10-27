@@ -177,38 +177,64 @@ public class MyList <E> {
                
     }
     
+    /*
+    
+     public void ordenar() {
+        if (cabeza == null) {
+            return; // La lista está vacía, no hay nada que ordenar
+        }
+
+        boolean intercambiado;
+        Nodo nodoActual;
+        Nodo nodoSiguiente = null;
+
+        do {
+            intercambiado = false;
+            nodoActual = cabeza;
+
+            while (nodoActual.siguiente != nodoSiguiente) {
+                if (nodoActual.valor > nodoActual.siguiente.valor) {
+                    // Intercambiar los valores de los nodos
+                    int temp = nodoActual.valor;
+                    nodoActual.valor = nodoActual.siguiente.valor;
+                    nodoActual.siguiente.valor = temp;
+                    intercambiado = true;
+                }
+                nodoActual = nodoActual.siguiente;
+            }
+            nodoSiguiente = nodoActual;
+        } while (intercambiado);
+    }
+    */
+    
     public void ordenar()
     {
         Node<E> temporary = firstNode;
-        Node<E> temp2 = temporary.getNextNode();
-        boolean flag = true;
+        Node<E> temp2 = null;
         int numNodos = contarNodos();
         
-//        while(flag)
-//        {
-//            flag = false;
+        if(temporary == null)
+        {return;}
+        
+        boolean intercambiado;
+        
+        do
+        {
+            intercambiado = false;
+            temporary = firstNode;
             
-            for(int i=0; i<3; i++)
+            while(temporary.nextNode != temp2)
             {
-                if(temporary.getIndex() > temp2.getIndex())
-                  {
-                      intercambiar(temporary.getIndex(), temp2.getIndex());
-                  }
-                  temporary=temporary.getNextNode();
-                  temp2 = temp2.getNextNode();
+                if(temporary.getIndex() > temporary.nextNode.getIndex())
+                {
+                    intercambiar(temporary.getIndex(), temporary.nextNode.getIndex());
+                    intercambiado = true;
+                }
+                temporary = temporary.getNextNode();
             }
-//            while (temporary != null && temp2 != null){
-//                if(temporary.getIndex() > temp2.getIndex())
-//                {
-//                    intercambiar(temporary.getIndex(), temp2.getIndex());
-//                }
-//                temporary=temporary.getNextNode();
-//                temp2 = temp2.getNextNode();
-//                
-//            }
-//        }
-       
-       
+            temp2 = temporary;
+            
+        }while(intercambiado);
           
     }
     
