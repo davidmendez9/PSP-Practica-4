@@ -3,7 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mendezdavidp04;
+package Controlador;
+
+import java.io.EOFException;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 
 /**
  *
@@ -124,6 +134,94 @@ public class MyList <E> {
         return false;
     }
     
+    public void crearFichero() 
+     {
+
+         Node<E> aux = this.firstNode;
+         
+        try {
+            // A partir del objeto File creamos el fichero físicamente
+           
+                System.out.println("El fichero se ha creado correctamente");
+                FileOutputStream fos = new FileOutputStream("C:\\Users\\David\\Desktop\\2DAM\\PSP\\Java\\MendezDavidP04\\fichero.dat");
+                ObjectOutputStream oos = new ObjectOutputStream(fos);
+                
+                while(aux != null)
+                {
+                    E objeto = (E) aux.getMain();
+                    oos.writeObject(objeto);
+                    aux = aux.getNextNode();
+                }
+            
+           fos.close();
+           oos.close();
+        }catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
+        
+     }
+    
+    public ArrayList deserializar() throws FileNotFoundException, IOException, ClassNotFoundException
+    {
+       /* ArrayList<E> lista = new ArrayList();
+        E aux = null;
+        
+        FileInputStream fis = new FileInputStream("fichero.dat");
+        ObjectInputStream sis = new ObjectInputStream(fis);
+        
+        try {
+            
+
+            while(true){
+                aux = (E) sis.readObject();
+                lista.add(aux);
+            }
+            
+            
+            
+        }
+        catch (EOFException ex) {
+            ex.printStackTrace();
+        
+        sis.close();
+        fis.close();
+        
+        
+        return lista;
+    
+        
+    }*/
+        
+     ArrayList<E> lista = new ArrayList();
+        E emp = null;
+        try
+        {
+            FileInputStream fileIn = new FileInputStream("fichero.dat");
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+            try{
+               while(true){
+                emp = (E) in.readObject();
+                lista.add(emp);
+                
+                } 
+            }catch(EOFException ex){}
+        in.close();
+        fileIn.close();     
+               
+            
+            
+        }
+        catch(IOException i)
+        {
+            i.printStackTrace();
+        }
+        catch(ClassNotFoundException c)
+        {
+            System.out.println("Clase Empleado no encontrada");
+            c.printStackTrace();
+        }
+        return lista;   
+}
     public int contarNodos()
     {
         int contador = 0;

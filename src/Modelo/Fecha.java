@@ -3,13 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mendezdavidp04;
+package Modelo;
+
+import java.io.Serializable;
 
 /**
  *
  * @author David
  */
-public class Fecha {
+public class Fecha implements Serializable{
     int dia;
     int mes;
     int anio;

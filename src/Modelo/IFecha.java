@@ -1,4 +1,4 @@
-package mendezdavidp04;
+package Modelo;
 import java.util.*;
 //////////////////////////////////////////////////////////////////
 // Interfaz IFecha: m�todos y constantes para obtener

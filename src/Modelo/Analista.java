@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mendezdavidp04;
+package Modelo;
 
 import java.io.Serializable;
 import java.util.GregorianCalendar;
@@ -12,7 +12,7 @@ import java.util.GregorianCalendar;
  *
  * @author David
  */
-public class Analista extends Empleado implements IFecha, Serializable {
+public class Analista extends Empleado implements IFecha {
     
     double plusAnual;
     String nombreUsuario; //Nombre de usuario

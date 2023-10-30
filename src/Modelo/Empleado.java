@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mendezdavidp04;
+package Modelo;
 
+import Modelo.Excepciones;
+import Modelo.Fecha;
 import java.io.Serializable;
 
 /**

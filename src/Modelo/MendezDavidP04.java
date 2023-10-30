@@ -3,8 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mendezdavidp04;
+package Modelo;
 
+import Controlador.MyList;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,7 +20,7 @@ public class MendezDavidP04 {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, FileNotFoundException, ClassNotFoundException {
         
         MyList lista = new MyList();
         
@@ -60,11 +64,21 @@ public class MendezDavidP04 {
       
        lista.showMyList();
         
-       System.out.println("-----------------------------------------------------------------------------");
+       System.out.println("----------------------FICHEROS-------------------------------------------------------");
        
+       lista.crearFichero();
        
+       ArrayList<Empleado> juan = new ArrayList();
        
-              
+       juan = lista.deserializar();
+       
+        System.out.println(juan);
+        MyList listaputita = new MyList();
+        for(int i = 0; i < juan.size(); i++){
+            listaputita.add(juan.get(i), juan.get(i).getNumero());
+        }
+        System.out.println("--  COMPROBACION--");
+        listaputita.showMyList();
       
     }
     
