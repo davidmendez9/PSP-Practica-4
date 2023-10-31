@@ -80,6 +80,11 @@ public class MendezDavidP04 {
         System.out.println("--  COMPROBACION--");
         listaputita.showMyList();
       
+        System.out.println("------------------gggggg----------------------");
+        listaputita = new MyList();
+        
+        listaputita.showMyList();
+        
     }
     
 }

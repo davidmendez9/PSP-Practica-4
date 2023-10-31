@@ -5,6 +5,19 @@
  */
 package Vista;
 
+import Controlador.MyList;
+import Modelo.Analista;
+import Modelo.Empleado;
+import Modelo.Excepciones;
+import Modelo.Fecha;
+import Modelo.Programador;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author David
@@ -14,8 +27,50 @@ public class InterefazGrafica extends javax.swing.JFrame {
     /**
      * Creates new form InterefazGrafica
      */
+    
+    
+    MyList lista = new MyList();
+    
     public InterefazGrafica() {
         initComponents();
+        
+        botonAnterior.setEnabled(false);
+         try
+        {
+            lista.add(new Analista(50, "David", 1200, 1300, new Fecha(03,11, 2015), 2, "dmenndezz"), 50);
+        }catch(Excepciones e){
+            System.out.println(e.getMessage());
+        }
+        
+        try
+        {
+            lista.add(new Analista(4, "Pablo", 1050, 1300, new Fecha(15, 11, 2016), 1, "bypablopablete"), 4);
+        }catch(Excepciones e){
+            System.out.println(e.getMessage());
+        }
+        
+        try
+        {
+            lista.add(new Programador(2, "Juan", 1200, 1450, new Fecha(07,04, 2023), 3, 5 ), 2);
+        }catch(Excepciones e){
+            System.out.println(e.getMessage());
+        }
+        
+        try
+        {
+            lista.add(new Programador(7, "Pedro", 1400, 1500, new Fecha(27, 12, 2019), 2, 2), 7);
+        }catch(Excepciones e){
+            System.out.println(e.getMessage());
+        }
+        
+        try
+        {
+            lista.add(new Analista(3, "Manuel", 1300, 1350, new Fecha(20, 03, 1999), 2, "pablete"), 3);
+        }catch(Excepciones e){
+            System.out.println(e.getMessage());
+        }
+        
+        mostrarEmpleados();
     }
 
     /**
@@ -31,19 +86,32 @@ public class InterefazGrafica extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        txtNum = new javax.swing.JTextField();
+        txtNombre = new javax.swing.JTextField();
+        txtSueldo = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        txtDia = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        txtMes = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        txtAnio = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        txtSueldoMax = new javax.swing.JTextField();
+        botonCargarEmpleados = new javax.swing.JButton();
+        botonGuardarFichero = new javax.swing.JButton();
+        botonCrearEmpleado = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        txtTipoEmpleado = new javax.swing.JTextField();
+        botonCreadoMasivo = new javax.swing.JButton();
+        botonAnterior = new javax.swing.JButton();
+        botonSiguiente = new javax.swing.JButton();
+        botonOrdenar = new javax.swing.JButton();
+        botonCalcular = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(232, 0, 0));
         jLabel1.setText("EMPLEADOS");
 
         jLabel2.setText("Número:");
@@ -52,9 +120,9 @@ public class InterefazGrafica extends javax.swing.JFrame {
 
         jLabel4.setText("Sueldo:");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtNum.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtNumActionPerformed(evt);
             }
         });
 
@@ -62,85 +130,197 @@ public class InterefazGrafica extends javax.swing.JFrame {
 
         jLabel6.setText("/");
 
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+        txtMes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
+                txtMesActionPerformed(evt);
             }
         });
 
         jLabel7.setText("/");
+
+        jLabel8.setText("Sueldo Máximo:");
+
+        botonCargarEmpleados.setText("Cargar fichero");
+        botonCargarEmpleados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonCargarEmpleadosActionPerformed(evt);
+            }
+        });
+
+        botonGuardarFichero.setText("Guardar fichero");
+        botonGuardarFichero.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonGuardarFicheroActionPerformed(evt);
+            }
+        });
+
+        botonCrearEmpleado.setText("Crear empleado");
+
+        jLabel9.setText("Tipo de empleado:");
+
+        botonCreadoMasivo.setText("Creado masivo");
+
+        botonAnterior.setText("<--- Anterior");
+        botonAnterior.setMaximumSize(new java.awt.Dimension(113, 25));
+        botonAnterior.setMinimumSize(new java.awt.Dimension(113, 25));
+        botonAnterior.setPreferredSize(new java.awt.Dimension(113, 25));
+        botonAnterior.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAnteriorActionPerformed(evt);
+            }
+        });
+
+        botonSiguiente.setText("Siguiente --->");
+        botonSiguiente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonSiguienteActionPerformed(evt);
+            }
+        });
+
+        botonOrdenar.setLabel("Ordenar");
+
+        botonCalcular.setLabel("Calcular");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(44, 44, 44)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(botonOrdenar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botonGuardarFichero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonCargarEmpleados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel9))
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(366, 366, 366)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5))
-                        .addGap(26, 26, 26)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(txtSueldo)
+                            .addComponent(txtSueldoMax, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(txtDia, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(4, 4, 4)
                                 .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(9, 9, 9)
+                                .addComponent(txtMes, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel7)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jTextField3)
-                            .addComponent(jTextField2)
-                            .addComponent(jTextField1))))
-                .addGap(366, 366, 366))
+                                .addComponent(txtAnio, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel1)
+                        .addGap(91, 91, 91))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(botonCrearEmpleado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(botonCreadoMasivo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(botonCalcular, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(42, 42, 42)
+                                .addComponent(botonAnterior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(botonSiguiente))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(txtTipoEmpleado, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+                                .addComponent(txtNum, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.LEADING)))
+                        .addContainerGap(44, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(61, 61, 61)
+                .addGap(49, 49, 49)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(txtTipoEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(txtSueldo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(35, 35, 35)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel8)
+                    .addComponent(txtSueldoMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtDia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtMes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(424, Short.MAX_VALUE))
+                    .addComponent(txtAnio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(52, 52, 52)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(botonSiguiente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(botonCargarEmpleados)
+                                .addComponent(botonCrearEmpleado))
+                            .addGap(18, 18, 18)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(botonGuardarFichero)
+                                .addComponent(botonCreadoMasivo))
+                            .addGap(18, 18, 18)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(botonOrdenar)
+                                .addComponent(botonCalcular)))
+                        .addComponent(botonAnterior, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txtNumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txtNumActionPerformed
 
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+    private void txtMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMesActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
+    }//GEN-LAST:event_txtMesActionPerformed
+
+    private void botonCargarEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCargarEmpleadosActionPerformed
+        cargarDatosFichero();
+    }//GEN-LAST:event_botonCargarEmpleadosActionPerformed
+
+    private void botonAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAnteriorActionPerformed
+        retroceder();
+    }//GEN-LAST:event_botonAnteriorActionPerformed
+
+    private void botonSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSiguienteActionPerformed
+        avanzar();
+    }//GEN-LAST:event_botonSiguienteActionPerformed
+
+    private void botonGuardarFicheroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarFicheroActionPerformed
+        try {
+            guardarDatosFichero();
+        } catch (IOException ex) {
+            Logger.getLogger(InterefazGrafica.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(InterefazGrafica.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_botonGuardarFicheroActionPerformed
 
     /**
      * @param args the command line arguments
@@ -178,6 +358,14 @@ public class InterefazGrafica extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonAnterior;
+    private javax.swing.JButton botonCalcular;
+    private javax.swing.JButton botonCargarEmpleados;
+    private javax.swing.JButton botonCreadoMasivo;
+    private javax.swing.JButton botonCrearEmpleado;
+    private javax.swing.JButton botonGuardarFichero;
+    private javax.swing.JButton botonOrdenar;
+    private javax.swing.JButton botonSiguiente;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -185,11 +373,95 @@ public class InterefazGrafica extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JTextField txtAnio;
+    private javax.swing.JTextField txtDia;
+    private javax.swing.JTextField txtMes;
+    private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtNum;
+    private javax.swing.JTextField txtSueldo;
+    private javax.swing.JTextField txtSueldoMax;
+    private javax.swing.JTextField txtTipoEmpleado;
     // End of variables declaration//GEN-END:variables
+
+    
+    private void mostrarEmpleados()
+    {
+        Empleado e1 = (Empleado) lista.getActualNode().getMain();
+        
+        if(e1.getClass().getSimpleName().contains("Analista"))
+        {
+            txtTipoEmpleado.setText("Analista");
+        }
+        else
+        {
+            txtTipoEmpleado.setText("Programador");
+        }
+        txtNum.setText("" + e1.getNumero());
+        txtNombre.setText(e1.getNombre());
+        txtSueldo.setText("" + e1.getSueldo());
+        txtSueldoMax.setText("" + e1.getSueldoMaximo());
+        txtDia.setText("" + e1.getFechaAlta().getDia());
+        txtMes.setText("" + e1.getFechaAlta().getMes());
+        txtAnio.setText("" + e1.getFechaAlta().getAnio());
+        
+    }
+    
+    private void cargarDatosFichero()
+    {
+        lista.crearFichero();
+        JOptionPane.showMessageDialog(this, "Datos cargados en fichero.dat");
+    }
+    
+    private void guardarDatosFichero() throws ClassNotFoundException, IOException 
+    {
+        ArrayList<Empleado> datosFichero = new ArrayList();
+       
+        if(lista.existeFichero())
+        {
+            datosFichero = lista.deserializar();
+            borrarLista();
+            for(int i = 0; i < datosFichero.size(); i++){
+                lista.add(datosFichero.get(i), datosFichero.get(i).getNumero());
+            }
+            JOptionPane.showMessageDialog(this, "Datos guardados!");
+            mostrarEmpleados();
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(this, "El fichero no se encuentra o no existe.");
+        }
+    }
+    
+    private void borrarLista()
+    {
+        lista = new MyList();
+    }
+    
+    private void avanzar()
+    {
+        lista.avanzar();
+
+        mostrarEmpleados();
+        
+        if(lista.isFirst())
+        {
+            botonSiguiente.setEnabled(false);
+        }
+        botonAnterior.setEnabled(true);
+    }
+    
+    private void retroceder()
+    {
+        lista.retroceder();
+        
+        mostrarEmpleados();
+        
+        if(lista.isLast())
+        {
+            botonAnterior.setEnabled(false);
+        }
+        botonSiguiente.setEnabled(true);
+    }
 }

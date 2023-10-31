@@ -84,6 +84,18 @@ public class MyList <E> {
         
     }
     
+    public void removeAll()
+    {
+        MyList<E> aux = new MyList();
+        
+        while(aux != null)
+        {
+            removeElement();
+            
+        }
+        
+    }
+    
     public void removeElement(){
         
         if(actualNode == firstNode){
@@ -162,37 +174,8 @@ public class MyList <E> {
      }
     
     public ArrayList deserializar() throws FileNotFoundException, IOException, ClassNotFoundException
-    {
-       /* ArrayList<E> lista = new ArrayList();
-        E aux = null;
-        
-        FileInputStream fis = new FileInputStream("fichero.dat");
-        ObjectInputStream sis = new ObjectInputStream(fis);
-        
-        try {
-            
-
-            while(true){
-                aux = (E) sis.readObject();
-                lista.add(aux);
-            }
-            
-            
-            
-        }
-        catch (EOFException ex) {
-            ex.printStackTrace();
-        
-        sis.close();
-        fis.close();
-        
-        
-        return lista;
-    
-        
-    }*/
-        
-     ArrayList<E> lista = new ArrayList();
+    {  
+        ArrayList<E> lista = new ArrayList();
         E emp = null;
         try
         {
@@ -205,11 +188,8 @@ public class MyList <E> {
                 
                 } 
             }catch(EOFException ex){}
-        in.close();
-        fileIn.close();     
-               
-            
-            
+            in.close();
+            fileIn.close();         
         }
         catch(IOException i)
         {
@@ -222,6 +202,19 @@ public class MyList <E> {
         }
         return lista;   
 }
+    public boolean existeFichero()
+    {
+        File buscar = new File("fichero.dat");
+        if(buscar.exists())
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    
     public int contarNodos()
     {
         int contador = 0;
@@ -274,37 +267,7 @@ public class MyList <E> {
         }
                
     }
-    
-    /*
-    
-     public void ordenar() {
-        if (cabeza == null) {
-            return; // La lista está vacía, no hay nada que ordenar
-        }
 
-        boolean intercambiado;
-        Nodo nodoActual;
-        Nodo nodoSiguiente = null;
-
-        do {
-            intercambiado = false;
-            nodoActual = cabeza;
-
-            while (nodoActual.siguiente != nodoSiguiente) {
-                if (nodoActual.valor > nodoActual.siguiente.valor) {
-                    // Intercambiar los valores de los nodos
-                    int temp = nodoActual.valor;
-                    nodoActual.valor = nodoActual.siguiente.valor;
-                    nodoActual.siguiente.valor = temp;
-                    intercambiado = true;
-                }
-                nodoActual = nodoActual.siguiente;
-            }
-            nodoSiguiente = nodoActual;
-        } while (intercambiado);
-    }
-    */
-    
     public void ordenar()
     {
         Node<E> temporary = firstNode;
