@@ -14,11 +14,11 @@ import java.util.GregorianCalendar;
  */
 public class Programador extends Empleado implements IFecha {
     
-    double sueldoExtra;
+    int sueldoExtra;
     int numeroProgramas; //Num programas realizados
 
     public Programador(int numero, String nombre, double sueldo, double sueldoMaximo, Fecha fechaAlta,
-                      double sueldoExtraMensual, int numeroProgramas) throws Excepciones {
+                      int sueldoExtraMensual, int numeroProgramas) throws Excepciones {
         super(numero, nombre, sueldo, sueldoMaximo, fechaAlta);
         this.sueldoExtra = sueldoExtraMensual;
         this.numeroProgramas = numeroProgramas;
@@ -28,7 +28,7 @@ public class Programador extends Empleado implements IFecha {
         return sueldoExtra;
     }
 
-    public void setSueldoExtra(double sueldoExtra) {
+    public void setSueldoExtra(int sueldoExtra) {
         this.sueldoExtra = sueldoExtra;
     }
 

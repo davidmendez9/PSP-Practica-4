@@ -107,6 +107,15 @@ public class InterefazGrafica extends javax.swing.JFrame {
         botonSiguiente = new javax.swing.JButton();
         botonOrdenar = new javax.swing.JButton();
         botonCalcular = new javax.swing.JButton();
+        labelDato1 = new javax.swing.JLabel();
+        labelDato2 = new javax.swing.JLabel();
+        txtDatoA = new javax.swing.JTextField();
+        txtDatoB = new javax.swing.JTextField();
+        botonAceptar = new javax.swing.JButton();
+        botonCancelar = new javax.swing.JButton();
+        botonBorrar = new javax.swing.JButton();
+        botonPrimero = new javax.swing.JButton();
+        botonUltimo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -155,6 +164,11 @@ public class InterefazGrafica extends javax.swing.JFrame {
         });
 
         botonCrearEmpleado.setText("Crear empleado");
+        botonCrearEmpleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonCrearEmpleadoActionPerformed(evt);
+            }
+        });
 
         jLabel9.setText("Tipo de empleado:");
 
@@ -178,8 +192,52 @@ public class InterefazGrafica extends javax.swing.JFrame {
         });
 
         botonOrdenar.setLabel("Ordenar");
+        botonOrdenar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonOrdenarActionPerformed(evt);
+            }
+        });
 
         botonCalcular.setLabel("Calcular");
+
+        labelDato1.setText("Plus Anual:");
+
+        labelDato2.setText("Nombre de Usuario:");
+
+        botonAceptar.setText("Aceptar");
+        botonAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAceptarActionPerformed(evt);
+            }
+        });
+
+        botonCancelar.setText("Cancelar");
+        botonCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonCancelarActionPerformed(evt);
+            }
+        });
+
+        botonBorrar.setText("Borrar");
+        botonBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonBorrarActionPerformed(evt);
+            }
+        });
+
+        botonPrimero.setText("Ir al primero");
+        botonPrimero.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonPrimeroActionPerformed(evt);
+            }
+        });
+
+        botonUltimo.setText("Ir al último");
+        botonUltimo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonUltimoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -188,18 +246,19 @@ public class InterefazGrafica extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(botonBorrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(botonOrdenar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(botonGuardarFichero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3)
                     .addComponent(jLabel4)
                     .addComponent(jLabel5)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
                     .addComponent(botonCargarEmpleados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel9))
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(txtSueldo)
                             .addComponent(txtSueldoMax, javax.swing.GroupLayout.Alignment.LEADING)
@@ -218,20 +277,43 @@ public class InterefazGrafica extends javax.swing.JFrame {
                         .addGap(91, 91, 91))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(botonCrearEmpleado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(botonCreadoMasivo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(botonCalcular, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(42, 42, 42)
-                                .addComponent(botonAnterior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(botonSiguiente))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(botonCrearEmpleado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(botonCreadoMasivo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(botonCalcular, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(txtTipoEmpleado, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
                                 .addComponent(txtNum, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.LEADING)))
-                        .addContainerGap(44, Short.MAX_VALUE))))
+                        .addGap(29, 29, 29)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(labelDato1)
+                                    .addComponent(labelDato2))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtDatoA)
+                                    .addComponent(txtDatoB, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addComponent(botonAnterior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(botonAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(botonCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(botonSiguiente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(botonPrimero, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(botonUltimo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addGap(0, 32, Short.MAX_VALUE)))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -239,11 +321,15 @@ public class InterefazGrafica extends javax.swing.JFrame {
                 .addGap(49, 49, 49)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(txtTipoEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTipoEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelDato1)
+                    .addComponent(txtDatoA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txtNum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelDato2)
+                    .addComponent(txtDatoB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -269,24 +355,32 @@ public class InterefazGrafica extends javax.swing.JFrame {
                     .addComponent(jLabel6)
                     .addComponent(jLabel7)
                     .addComponent(txtAnio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(52, 52, 52)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botonAceptar)
+                    .addComponent(botonCancelar))
+                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(botonSiguiente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(botonCargarEmpleados)
-                                .addComponent(botonCrearEmpleado))
-                            .addGap(18, 18, 18)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(botonGuardarFichero)
-                                .addComponent(botonCreadoMasivo))
-                            .addGap(18, 18, 18)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(botonOrdenar)
-                                .addComponent(botonCalcular)))
-                        .addComponent(botonAnterior, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(49, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(botonCargarEmpleados)
+                            .addComponent(botonCrearEmpleado))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(botonGuardarFichero)
+                            .addComponent(botonCreadoMasivo))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(botonOrdenar)
+                            .addComponent(botonCalcular)))
+                    .addComponent(botonAnterior, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botonBorrar)
+                    .addComponent(botonPrimero)
+                    .addComponent(botonUltimo))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         pack();
@@ -321,6 +415,58 @@ public class InterefazGrafica extends javax.swing.JFrame {
             Logger.getLogger(InterefazGrafica.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_botonGuardarFicheroActionPerformed
+
+    private void botonOrdenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonOrdenarActionPerformed
+        try {
+            ordenar();
+        } catch(Exception ex){}
+        
+    }//GEN-LAST:event_botonOrdenarActionPerformed
+
+    private void botonCrearEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCrearEmpleadoActionPerformed
+            modoCrear();
+    }//GEN-LAST:event_botonCrearEmpleadoActionPerformed
+
+    private void botonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAceptarActionPerformed
+        try {
+            crearEmpleado();
+            mostrarEmpleados();
+            salirModoCrear();
+        } catch (Excepciones ex) {
+            Logger.getLogger(InterefazGrafica.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_botonAceptarActionPerformed
+
+    private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
+        salirModoCrear();
+        mostrarEmpleados();
+    }//GEN-LAST:event_botonCancelarActionPerformed
+
+    private void botonBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBorrarActionPerformed
+        borrarEmpleado();
+    }//GEN-LAST:event_botonBorrarActionPerformed
+
+    private void botonUltimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonUltimoActionPerformed
+        if(lista.isLast())
+        {
+            JOptionPane.showMessageDialog(this, "Ya estás en el último nodo");
+        }
+        else
+        {
+            irUltimo();
+        }
+    }//GEN-LAST:event_botonUltimoActionPerformed
+
+    private void botonPrimeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonPrimeroActionPerformed
+        if(lista.isFirst())
+        {
+            JOptionPane.showMessageDialog(this, "Ya estás en el primer nodo");
+        }
+        else
+        {
+            irPrimero();
+        }
+    }//GEN-LAST:event_botonPrimeroActionPerformed
 
     /**
      * @param args the command line arguments
@@ -358,14 +504,19 @@ public class InterefazGrafica extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonAceptar;
     private javax.swing.JButton botonAnterior;
+    private javax.swing.JButton botonBorrar;
     private javax.swing.JButton botonCalcular;
+    private javax.swing.JButton botonCancelar;
     private javax.swing.JButton botonCargarEmpleados;
     private javax.swing.JButton botonCreadoMasivo;
     private javax.swing.JButton botonCrearEmpleado;
     private javax.swing.JButton botonGuardarFichero;
     private javax.swing.JButton botonOrdenar;
+    private javax.swing.JButton botonPrimero;
     private javax.swing.JButton botonSiguiente;
+    private javax.swing.JButton botonUltimo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -375,7 +526,11 @@ public class InterefazGrafica extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel labelDato1;
+    private javax.swing.JLabel labelDato2;
     private javax.swing.JTextField txtAnio;
+    private javax.swing.JTextField txtDatoA;
+    private javax.swing.JTextField txtDatoB;
     private javax.swing.JTextField txtDia;
     private javax.swing.JTextField txtMes;
     private javax.swing.JTextField txtNombre;
@@ -385,6 +540,103 @@ public class InterefazGrafica extends javax.swing.JFrame {
     private javax.swing.JTextField txtTipoEmpleado;
     // End of variables declaration//GEN-END:variables
 
+    private void irPrimero()
+    {
+        while(lista.isFirst() == false)
+        {
+            lista.avanzar();
+        }
+        botonSiguiente.setEnabled(false);
+        botonAnterior.setEnabled(true);
+        mostrarEmpleados();
+    }
+    
+    private void irUltimo()
+    {
+        while(lista.isLast() == false)
+        {
+            lista.retroceder();
+        }
+        botonSiguiente.setEnabled(true);
+        botonAnterior.setEnabled(false);
+        mostrarEmpleados();
+    }
+    
+    private void modoCrear()
+    {
+        vaciarCasillas();
+        botonAceptar.setEnabled(true);
+        botonCancelar.setEnabled(true);
+        botonCargarEmpleados.setEnabled(false);
+        botonGuardarFichero.setEnabled(false);
+        botonSiguiente.setEnabled(false);
+        botonAnterior.setEnabled(false);
+        botonOrdenar.setEnabled(false);
+        botonCreadoMasivo.setEnabled(false);
+        botonCrearEmpleado.setEnabled(false);
+        botonCalcular.setEnabled(false);
+        cambiarLabels();
+    }
+    
+    private void salirModoCrear()
+    {
+        botonCargarEmpleados.setEnabled(true);
+        botonGuardarFichero.setEnabled(true);
+        botonSiguiente.setEnabled(true);
+        botonAnterior.setEnabled(false);
+        botonOrdenar.setEnabled(true);
+        botonCreadoMasivo.setEnabled(true);
+        botonCrearEmpleado.setEnabled(true);
+        botonCalcular.setEnabled(true);
+        botonAceptar.setEnabled(false);
+        botonCancelar.setEnabled(false);
+    }
+    
+    private void cambiarLabels()
+    {
+        labelDato1.setText("Dato 1:");
+        labelDato2.setText("Dato 2:");
+    }
+    
+    private void crearEmpleado() throws Excepciones
+    {
+        cambiarLabels();
+        
+        if(txtTipoEmpleado.getText().equals("Analista"))
+        {
+            try
+            {
+                lista.add(new Analista(Integer.parseInt(txtNum.getText()), txtNombre.getText(), Integer.parseInt(txtSueldo.getText()), Integer.parseInt(txtSueldoMax.getText()), new Fecha(Integer.parseInt(txtDia.getText()), Integer.parseInt(txtMes.getText()), Integer.parseInt(txtAnio.getText())), Integer.parseInt(txtDatoA.getText()), txtDatoB.getText()), Integer.parseInt(txtNum.getText()));
+            }catch(Excepciones e){
+                System.out.println(e.getMessage());
+            }  
+        }
+        else
+        {
+            try
+            {
+                lista.add(new Programador(Integer.parseInt(txtNum.getText()), txtNombre.getText(), Integer.parseInt(txtSueldo.getText()), Integer.parseInt(txtSueldoMax.getText()), new Fecha(Integer.parseInt(txtDia.getText()), Integer.parseInt(txtMes.getText()), Integer.parseInt(txtAnio.getText())), Integer.parseInt(txtDatoA.getText()), Integer.parseInt(txtDatoB.getText())), Integer.parseInt(txtNum.getText()));
+            }catch(Excepciones e){
+                System.out.println(e.getMessage());
+            }
+        }
+        
+    }
+    
+    private void vaciarCasillas()
+    {
+        txtAnio.setText("");
+        txtMes.setText("");
+        txtDia.setText("");
+        txtNombre.setText("");
+        txtNum.setText("");
+        txtSueldo.setText("");
+        txtSueldoMax.setText("");
+        txtTipoEmpleado.setText("");
+        txtDatoA.setText("");
+        txtDatoB.setText("");
+        
+    }
     
     private void mostrarEmpleados()
     {
@@ -393,10 +645,16 @@ public class InterefazGrafica extends javax.swing.JFrame {
         if(e1.getClass().getSimpleName().contains("Analista"))
         {
             txtTipoEmpleado.setText("Analista");
+            Analista analista = (Analista)e1;
+            txtDatoA.setText("" + analista.getPlusAnual());
+            txtDatoB.setText("" + analista.getNombreUsuario());
         }
         else
         {
             txtTipoEmpleado.setText("Programador");
+            Programador prog = (Programador)e1;
+            txtDatoA.setText("" + prog.getSueldoExtra());
+            txtDatoB.setText("" + prog.getNumeroProgramas());
         }
         txtNum.setText("" + e1.getNumero());
         txtNombre.setText(e1.getNombre());
@@ -406,6 +664,42 @@ public class InterefazGrafica extends javax.swing.JFrame {
         txtMes.setText("" + e1.getFechaAlta().getMes());
         txtAnio.setText("" + e1.getFechaAlta().getAnio());
         
+        diferenciarTipo();
+    }
+    
+    public void borrarEmpleado()
+    {
+        if(lista.isFirst())
+        {
+            lista.removeElement();
+            lista.retroceder();
+            mostrarEmpleados();
+        }
+        else if(lista.isLast())
+        {
+            lista.removeElement();
+            lista.avanzar();
+            mostrarEmpleados();
+        }
+        else
+        {
+            lista.removeElement();
+            lista.avanzar();
+            mostrarEmpleados();
+        }
+            if(lista.isFirst() && lista.isLast())
+            {
+                botonSiguiente.setEnabled(false);
+                botonAnterior.setEnabled(false);
+                botonBorrar.setEnabled(false);
+            }
+            
+    }
+    
+    private void ordenar()
+    {
+        lista.ordenar();
+        mostrarEmpleados();
     }
     
     private void cargarDatosFichero()
@@ -434,6 +728,21 @@ public class InterefazGrafica extends javax.swing.JFrame {
         }
     }
     
+    private void diferenciarTipo()
+    {
+        Empleado e1 = (Empleado) lista.getActualNode().getMain();
+        if(e1.getClass().getSimpleName().contains("Analista"))
+        {
+            labelDato1.setText("Plus Anual:");
+            labelDato2.setText("Nombre de Usuario:");
+        }
+        else
+        {
+            labelDato1.setText("Extra Mensual:");
+            labelDato2.setText("Número de programas:");
+        }
+    }
+    
     private void borrarLista()
     {
         lista = new MyList();
@@ -441,6 +750,7 @@ public class InterefazGrafica extends javax.swing.JFrame {
     
     private void avanzar()
     {
+        
         lista.avanzar();
 
         mostrarEmpleados();
@@ -454,6 +764,7 @@ public class InterefazGrafica extends javax.swing.JFrame {
     
     private void retroceder()
     {
+       
         lista.retroceder();
         
         mostrarEmpleados();

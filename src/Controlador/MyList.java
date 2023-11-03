@@ -83,19 +83,7 @@ public class MyList <E> {
     public void modifyElement(){
         
     }
-    
-    public void removeAll()
-    {
-        MyList<E> aux = new MyList();
-        
-        while(aux != null)
-        {
-            removeElement();
-            
-        }
-        
-    }
-    
+     
     public void removeElement(){
         
         if(actualNode == firstNode){
