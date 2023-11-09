@@ -34,43 +34,47 @@ public class InterefazGrafica extends javax.swing.JFrame {
     public InterefazGrafica() {
         initComponents();
         
+        botonCalcular.setEnabled(false);
+        botonAceptar.setEnabled(false);
+        botonCancelar.setEnabled(false);
         botonAnterior.setEnabled(false);
          try
         {
-            lista.add(new Analista(50, "David", 1200, 1300, new Fecha(03,11, 2015), 2, "dmenndezz"), 50);
+            lista.add(new Analista(50, "David", 1200, 1300, new Fecha(03,11, 2015), 20, "dmenndezz"), 50);
         }catch(Excepciones e){
             System.out.println(e.getMessage());
         }
         
         try
         {
-            lista.add(new Analista(4, "Pablo", 1050, 1300, new Fecha(15, 11, 2016), 1, "bypablopablete"), 4);
+            lista.add(new Analista(4, "Pablo", 1050, 1300, new Fecha(15, 11, 2016), 10, "bypablopablete"), 4);
         }catch(Excepciones e){
             System.out.println(e.getMessage());
         }
         
         try
         {
-            lista.add(new Programador(2, "Juan", 1200, 1450, new Fecha(07,04, 2023), 3, 5 ), 2);
+            lista.add(new Programador(2, "Juan", 1200, 1450, new Fecha(9,04, 2023), 30, 5 ), 2);
         }catch(Excepciones e){
             System.out.println(e.getMessage());
         }
         
         try
         {
-            lista.add(new Programador(7, "Pedro", 1400, 1500, new Fecha(27, 12, 2019), 2, 2), 7);
+            lista.add(new Programador(7, "Pedro", 1400, 1500, new Fecha(27, 12, 2019), 20, 2), 7);
         }catch(Excepciones e){
             System.out.println(e.getMessage());
         }
         
         try
         {
-            lista.add(new Analista(3, "Manuel", 1300, 1350, new Fecha(20, 03, 1999), 2, "pablete"), 3);
+            lista.add(new Analista(3, "Manuel", 1300, 2000, new Fecha(9, 11, 1999), 20, "pablete"), 3);
         }catch(Excepciones e){
             System.out.println(e.getMessage());
         }
         
         mostrarEmpleados();
+        compruebaCumple();
     }
 
     /**
@@ -173,6 +177,11 @@ public class InterefazGrafica extends javax.swing.JFrame {
         jLabel9.setText("Tipo de empleado:");
 
         botonCreadoMasivo.setText("Creado masivo");
+        botonCreadoMasivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonCreadoMasivoActionPerformed(evt);
+            }
+        });
 
         botonAnterior.setText("<--- Anterior");
         botonAnterior.setMaximumSize(new java.awt.Dimension(113, 25));
@@ -199,6 +208,11 @@ public class InterefazGrafica extends javax.swing.JFrame {
         });
 
         botonCalcular.setLabel("Calcular");
+        botonCalcular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonCalcularActionPerformed(evt);
+            }
+        });
 
         labelDato1.setText("Plus Anual:");
 
@@ -253,7 +267,7 @@ public class InterefazGrafica extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(jLabel4)
                     .addComponent(jLabel5)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(botonCargarEmpleados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel9))
                 .addGap(26, 26, 26)
@@ -395,7 +409,11 @@ public class InterefazGrafica extends javax.swing.JFrame {
     }//GEN-LAST:event_txtMesActionPerformed
 
     private void botonCargarEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCargarEmpleadosActionPerformed
-        cargarDatosFichero();
+        try {
+            cargarDatosFichero();
+        } catch (IOException | ClassNotFoundException ex) {
+            Logger.getLogger(InterefazGrafica.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_botonCargarEmpleadosActionPerformed
 
     private void botonAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAnteriorActionPerformed
@@ -407,13 +425,7 @@ public class InterefazGrafica extends javax.swing.JFrame {
     }//GEN-LAST:event_botonSiguienteActionPerformed
 
     private void botonGuardarFicheroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarFicheroActionPerformed
-        try {
-            guardarDatosFichero();
-        } catch (IOException ex) {
-            Logger.getLogger(InterefazGrafica.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(InterefazGrafica.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        guardarDatosFichero();
     }//GEN-LAST:event_botonGuardarFicheroActionPerformed
 
     private void botonOrdenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonOrdenarActionPerformed
@@ -447,26 +459,42 @@ public class InterefazGrafica extends javax.swing.JFrame {
     }//GEN-LAST:event_botonBorrarActionPerformed
 
     private void botonUltimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonUltimoActionPerformed
-        if(lista.isLast())
+        if(lista.isFirst())
         {
             JOptionPane.showMessageDialog(this, "Ya estás en el último nodo");
         }
         else
         {
-            irUltimo();
+            irPrimero();
         }
     }//GEN-LAST:event_botonUltimoActionPerformed
 
     private void botonPrimeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonPrimeroActionPerformed
-        if(lista.isFirst())
+        if(lista.isLast())
         {
             JOptionPane.showMessageDialog(this, "Ya estás en el primer nodo");
         }
         else
         {
-            irPrimero();
+            irUltimo();
         }
     }//GEN-LAST:event_botonPrimeroActionPerformed
+
+    private void botonCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCalcularActionPerformed
+        try {
+            accionCalcular();
+        } catch (Excepciones ex) {
+            Logger.getLogger(InterefazGrafica.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_botonCalcularActionPerformed
+
+    private void botonCreadoMasivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCreadoMasivoActionPerformed
+        try {
+            creadoMasivo();
+        } catch (Excepciones ex) {
+            Logger.getLogger(InterefazGrafica.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_botonCreadoMasivoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -540,6 +568,21 @@ public class InterefazGrafica extends javax.swing.JFrame {
     private javax.swing.JTextField txtTipoEmpleado;
     // End of variables declaration//GEN-END:variables
 
+    
+    private int generarNumAleatorio1()
+    {
+        int valorEntero = (int) (Math.floor(Math.random()*(1000-2000+1)+2000));
+        
+        return valorEntero;
+    }
+    
+    private int generarNumAleatorioMasivo()
+    {
+        int valorEntero = (int) (Math.floor(Math.random()*(2001-1000000+1)+1000000));
+        
+        return valorEntero;
+    }
+    
     private void irPrimero()
     {
         while(lista.isFirst() == false)
@@ -562,9 +605,53 @@ public class InterefazGrafica extends javax.swing.JFrame {
         mostrarEmpleados();
     }
     
+    private void compruebaCumple()
+    {
+        Empleado e1 = (Empleado) lista.getActualNode().getMain();
+        if(txtTipoEmpleado.getText().equals("Analista"))
+        {
+            Analista analista = (Analista)e1;
+            if(analista.cumpleAnios())
+            {
+                if(e1.getSueldo() == e1.getSueldoMaximo())
+                {
+                    botonCalcular.setEnabled(false);
+                }
+                else
+                {
+                    botonCalcular.setEnabled(true);
+                }
+            }
+            else
+            {
+                botonCalcular.setEnabled(false);
+            }
+        }
+        else
+        {
+            Programador prog = (Programador)e1;
+            if(prog.cumpleMes())
+            {
+                if(e1.getSueldo() == e1.getSueldoMaximo())
+                {
+                    botonCalcular.setEnabled(false);
+                }
+                else
+                {
+                    botonCalcular.setEnabled(true);
+                }
+            }
+            else
+            {
+                botonCalcular.setEnabled(false);
+            }
+        }
+    }
+    
     private void modoCrear()
     {
         vaciarCasillas();
+        txtNum.setEnabled(false);
         botonAceptar.setEnabled(true);
         botonCancelar.setEnabled(true);
         botonCargarEmpleados.setEnabled(false);
@@ -580,6 +667,7 @@ public class InterefazGrafica extends javax.swing.JFrame {
     
     private void salirModoCrear()
     {
+        txtNum.setEnabled(true);
         botonCargarEmpleados.setEnabled(true);
         botonGuardarFichero.setEnabled(true);
         botonSiguiente.setEnabled(true);
@@ -598,28 +686,70 @@ public class InterefazGrafica extends javax.swing.JFrame {
         labelDato2.setText("Dato 2:");
     }
     
+    private void creadoMasivo() throws Excepciones
+    {
+        lista = new MyList();
+        int cont = 0;
+        do
+        {
+            int num = generarNumAleatorioMasivo();
+
+
+            lista.add(new Analista(num, "Empleado "+cont, 1, 2, new Fecha(1, 1, 2023), 0, ""), num);
+            
+            cont++;
+            
+        }while(cont < 100000);
+        cont = 0;
+        do
+        {
+            int num = (int) (Math.floor(Math.random()*(2001-1000000+1)+1000000));
+            
+            
+            lista.add(new Analista(num, "Empleado "+cont, 1, 2, new Fecha(1, 1, 2023), 0, ""), num);
+            
+            cont++;
+        }while(cont < 20);
+        
+        mostrarEmpleados();
+    }
+    
     private void crearEmpleado() throws Excepciones
     {
         cambiarLabels();
+        int num = generarNumAleatorio1();
         
-        if(txtTipoEmpleado.getText().equals("Analista"))
+//        while(lista.existe(num))
+//        {
+//            num = generarNumAleatorio1();
+//        }
+
+        if(txtNombre.getText().equals("") || txtDia.getText().equals("") || txtMes.getText().equals("") || txtAnio.getText().equals("") || txtDatoA.getText().equals("") || txtDatoB.getText().equals("") || txtTipoEmpleado.getText().equals("") || txtSueldo.getText().equals("") || txtSueldoMax.getText().equals(""))
         {
-            try
-            {
-                lista.add(new Analista(Integer.parseInt(txtNum.getText()), txtNombre.getText(), Integer.parseInt(txtSueldo.getText()), Integer.parseInt(txtSueldoMax.getText()), new Fecha(Integer.parseInt(txtDia.getText()), Integer.parseInt(txtMes.getText()), Integer.parseInt(txtAnio.getText())), Integer.parseInt(txtDatoA.getText()), txtDatoB.getText()), Integer.parseInt(txtNum.getText()));
-            }catch(Excepciones e){
-                System.out.println(e.getMessage());
-            }  
+           JOptionPane.showMessageDialog(this, "Debes rellenar los huecos");
         }
         else
         {
-            try
+            if(txtTipoEmpleado.getText().equals("Analista"))
             {
-                lista.add(new Programador(Integer.parseInt(txtNum.getText()), txtNombre.getText(), Integer.parseInt(txtSueldo.getText()), Integer.parseInt(txtSueldoMax.getText()), new Fecha(Integer.parseInt(txtDia.getText()), Integer.parseInt(txtMes.getText()), Integer.parseInt(txtAnio.getText())), Integer.parseInt(txtDatoA.getText()), Integer.parseInt(txtDatoB.getText())), Integer.parseInt(txtNum.getText()));
-            }catch(Excepciones e){
-                System.out.println(e.getMessage());
+                try
+                {
+                    lista.add(new Analista(num, txtNombre.getText(), Integer.parseInt(txtSueldo.getText()), Integer.parseInt(txtSueldoMax.getText()), new Fecha(Integer.parseInt(txtDia.getText()), Integer.parseInt(txtMes.getText()), Integer.parseInt(txtAnio.getText())), Integer.parseInt(txtDatoA.getText()), txtDatoB.getText()), num);
+                }catch(Excepciones e){
+                    JOptionPane.showMessageDialog(this, e.getMessage());
+                }  
+            }
+            else
+            {
+                try
+                {
+                    lista.add(new Programador(num, txtNombre.getText(), Integer.parseInt(txtSueldo.getText()), Integer.parseInt(txtSueldoMax.getText()), new Fecha(Integer.parseInt(txtDia.getText()), Integer.parseInt(txtMes.getText()), Integer.parseInt(txtAnio.getText())), Integer.parseInt(txtDatoA.getText()), Integer.parseInt(txtDatoB.getText())), num);
+                }catch(Excepciones e){
+                    JOptionPane.showMessageDialog(this, e.getMessage());
+                }
             }
         }
+        
         
     }
     
@@ -691,9 +821,58 @@ public class InterefazGrafica extends javax.swing.JFrame {
             {
                 botonSiguiente.setEnabled(false);
                 botonAnterior.setEnabled(false);
-                botonBorrar.setEnabled(false);
+                
             }
             
+    }
+    
+    private void accionCalcular() throws Excepciones
+    {
+        
+        Empleado e1 = (Empleado) lista.getActualNode().getMain();
+        
+        if(txtTipoEmpleado.getText().equals("Analista"))
+        {
+            Analista analista = (Analista)e1;
+            
+            double res = 0;
+            res = (e1.getSueldo() + (e1.getSueldo() * (analista.getPlusAnual()/100)));
+            if(res < e1.getSueldoMaximo())
+            {
+                e1.setSueldo(res);
+                txtSueldo.setText("" + e1.getSueldo());
+                
+                
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(this, "El sueldo supera al sueldo máximo. Reajuste hecho.");
+                e1.setSueldo(e1.getSueldoMaximo());
+                txtSueldo.setText("" + e1.getSueldo());
+                botonCalcular.setEnabled(false);
+            }
+        }
+        else
+        {
+            Programador prog = (Programador)e1;
+            
+            double res = 0;
+            res = (e1.getSueldo() + (e1.getSueldo() * (prog.getSueldoExtra()/100)));
+            if(res < e1.getSueldoMaximo())
+            {
+                e1.setSueldo(res);
+                txtSueldo.setText("" + e1.getSueldo());
+                
+                
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(this, "El sueldo supera al sueldo máximo. Reajuste hecho.");
+                e1.setSueldo(e1.getSueldoMaximo());
+                txtSueldo.setText("" + e1.getSueldo());
+                botonCalcular.setEnabled(false);
+            }
+        }
     }
     
     private void ordenar()
@@ -702,13 +881,13 @@ public class InterefazGrafica extends javax.swing.JFrame {
         mostrarEmpleados();
     }
     
-    private void cargarDatosFichero()
+    private void guardarDatosFichero()
     {
         lista.crearFichero();
-        JOptionPane.showMessageDialog(this, "Datos cargados en fichero.dat");
+        JOptionPane.showMessageDialog(this, "Datos guardados en fichero.dat");
     }
     
-    private void guardarDatosFichero() throws ClassNotFoundException, IOException 
+    private void cargarDatosFichero() throws ClassNotFoundException, IOException 
     {
         ArrayList<Empleado> datosFichero = new ArrayList();
        
@@ -719,7 +898,7 @@ public class InterefazGrafica extends javax.swing.JFrame {
             for(int i = 0; i < datosFichero.size(); i++){
                 lista.add(datosFichero.get(i), datosFichero.get(i).getNumero());
             }
-            JOptionPane.showMessageDialog(this, "Datos guardados!");
+            JOptionPane.showMessageDialog(this, "Datos cargados con éxito");
             mostrarEmpleados();
         }
         else
@@ -760,6 +939,7 @@ public class InterefazGrafica extends javax.swing.JFrame {
             botonSiguiente.setEnabled(false);
         }
         botonAnterior.setEnabled(true);
+        compruebaCumple();
     }
     
     private void retroceder()
@@ -774,5 +954,6 @@ public class InterefazGrafica extends javax.swing.JFrame {
             botonAnterior.setEnabled(false);
         }
         botonSiguiente.setEnabled(true);
+        compruebaCumple();
     }
 }

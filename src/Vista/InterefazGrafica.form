@@ -33,7 +33,7 @@
                   <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel8" alignment="0" pref="115" max="32767" attributes="0"/>
+                  <Component id="jLabel8" alignment="0" max="32767" attributes="0"/>
                   <Component id="botonCargarEmpleados" alignment="0" max="32767" attributes="0"/>
                   <Component id="jLabel9" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
@@ -306,6 +306,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Creado masivo"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonCreadoMasivoActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="botonAnterior">
       <Properties>
@@ -344,6 +347,9 @@
       <Properties>
         <Property name="label" type="java.lang.String" value="Calcular"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonCalcularActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="labelDato1">
       <Properties>

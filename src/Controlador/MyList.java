@@ -23,6 +23,7 @@ public class MyList <E> {
     private Node<E> firstNode;
     private Node<E> lastNode;
     private Node<E> actualNode;
+    private int contador = -1;
     
     
     public MyList(){
@@ -42,7 +43,7 @@ public class MyList <E> {
     
     public void add(E p, int index){
         
-        
+        contador++;
         Node<E> newNode = new Node(p,index);
         
         //creas empleado 1 y lo añades
@@ -94,6 +95,7 @@ public class MyList <E> {
             actualNode.previousNode.setNextNode(actualNode.nextNode);
             actualNode.nextNode.setPreviousNode(actualNode.previousNode);
         }
+        contador--;
     }
 
     public Node<E> getFirstNode() {
@@ -224,8 +226,8 @@ public class MyList <E> {
         Node<E> nodo2 = null;
         Node<E> aux = null;
         
-        if(existe(numEmp1) && existe(numEmp2))
-        {
+//        if(existe(numEmp1) && existe(numEmp2))
+//        {
             while(temp != null)
             {
                 if(temp.getIndex() == numEmp1)
@@ -248,11 +250,11 @@ public class MyList <E> {
             
             nodo2.setIndex(index);
             nodo2.setMain(e1);
-        }
-        else
-        {
-            System.out.println("No existe alguno de los empleados.");
-        }
+//        }
+//        else
+//        {
+//            System.out.println("No existe alguno de los empleados.");
+//        }
                
     }
 
@@ -261,7 +263,7 @@ public class MyList <E> {
         Node<E> temporary = firstNode;
         Node<E> temp2 = null;
         int numNodos = contarNodos();
-        
+        int cont = 0;
         if(temporary == null)
         {return;}
         
@@ -278,15 +280,48 @@ public class MyList <E> {
                 {
                     intercambiar(temporary.getIndex(), temporary.nextNode.getIndex());
                     intercambiado = true;
+                    System.out.println("Intercambio "+cont);
                 }
                 temporary = temporary.getNextNode();
+                cont++;
             }
             temp2 = temporary;
+            
             
         }while(intercambiado);
           
     }
     
+//    public boolean ordenar(){
+//        
+//        
+//        
+//        boolean controlador = false;
+//        int nuevoContador = 0;
+//        
+//        if(this != null){
+//           for(int i = 0; i < contador+1; i++){
+//            Node temp = this.firstNode;
+//            for(int j = 0; j < contador - nuevoContador; j++){
+//                //si el siguiente no es nulo porque me daba un error ya que llegaba hasta el siguiente del ultimo
+//                if(temp.getNextNode()!= null){
+//                  if(temp.getIndex() > temp.getNextNode().getIndex()){
+//                      
+//                      intercambiar(temp.getIndex(), temp.getNextNode().getIndex());
+//                      System.out.println("Intercambiado "+nuevoContador);
+//                    }else{
+//                        controlador = true;
+//                    }
+//                    temp = temp.getNextNode();
+//                    
+//                    }
+//                nuevoContador++;
+//                }
+//            }
+//            return true;    
+//        }
+//        return false; 
+//    }
     
 // Inner class
 

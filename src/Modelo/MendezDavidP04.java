@@ -73,17 +73,17 @@ public class MendezDavidP04 {
        juan = lista.deserializar();
        
         System.out.println(juan);
-        MyList listaputita = new MyList();
+        MyList list = new MyList();
         for(int i = 0; i < juan.size(); i++){
-            listaputita.add(juan.get(i), juan.get(i).getNumero());
+            list.add(juan.get(i), juan.get(i).getNumero());
         }
         System.out.println("--  COMPROBACION--");
-        listaputita.showMyList();
+        list.showMyList();
       
         System.out.println("------------------gggggg----------------------");
-        listaputita = new MyList();
+        list = new MyList();
         
-        listaputita.showMyList();
+        list.showMyList();
         
     }
     
