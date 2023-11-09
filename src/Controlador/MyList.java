@@ -258,39 +258,64 @@ public class MyList <E> {
                
     }
 
-    public void ordenar()
-    {
-        Node<E> temporary = firstNode;
-        Node<E> temp2 = null;
-        int numNodos = contarNodos();
-        int cont = 0;
-        if(temporary == null)
-        {return;}
-        
-        boolean intercambiado;
-        
-        do
-        {
-            intercambiado = false;
-            temporary = firstNode;
-            
-            while(temporary.nextNode != temp2)
-            {
-                if(temporary.getIndex() > temporary.nextNode.getIndex())
-                {
-                    intercambiar(temporary.getIndex(), temporary.nextNode.getIndex());
-                    intercambiado = true;
-                    System.out.println("Intercambio "+cont);
-                }
-                temporary = temporary.getNextNode();
-                cont++;
-            }
-            temp2 = temporary;
-            
-            
-        }while(intercambiado);
-          
+//    public void ordenar() {
+//    if (firstNode == null || firstNode.getNextNode() == null) {
+//        return;  // La lista está vacía o tiene solo un elemento, ya está ordenada
+//    }
+//
+//    boolean intercambiado;
+//    do {
+//        Node<E> current = firstNode;
+//        intercambiado = false;
+//        
+//        while (current.getNextNode() != null) {
+//            if (current.getIndex() > current.getNextNode().getIndex()) {
+//                intercambiar(current.getIndex(), current.getNextNode().getIndex());
+//                intercambiado = true;
+//                System.out.println("Intercambio " +current.getMain());
+//            }
+//            current = current.getNextNode();
+//        }
+//    } while (intercambiado);
+//}
+
+    public void intercambiarMain(Node n1, Node n2){
+        Node<E> node1 = n1;
+        Node<E> node2 = n2;
+
+        int indexAux = node1.getIndex();
+        node1.setIndex(node2.getIndex());
+        node2.setIndex(indexAux);
+
+        E tempMain= node1.getMain();
+        node1.setMain(node2.getMain());
+        node2.setMain(tempMain);
     }
+    
+    public void ordenar(){
+        boolean ordenado = false;
+        int tamanio = this.contador;
+        int cont = 0;
+        do{
+            ordenado = false;
+            Node<E> node1 = this.firstNode;
+            Node<E> node2  = node1.getNextNode();
+            for(int i=0;i<tamanio;i++){
+                if(node1.getIndex()>node2.getIndex()){
+                    intercambiarMain(node1,node2);
+                    ordenado = true;
+                }
+                node1 = node1.getNextNode();
+                node2 = node2.getNextNode();
+            }
+            System.out.println("Numero de ordenados: "+cont);
+            cont++;
+        }while(ordenado);
+    }
+
+    
+
+
     
 //    public boolean ordenar(){
 //        
@@ -299,6 +324,7 @@ public class MyList <E> {
 //        boolean controlador = false;
 //        int nuevoContador = 0;
 //        
+//        Node aux;
 //        if(this != null){
 //           for(int i = 0; i < contador+1; i++){
 //            Node temp = this.firstNode;
@@ -306,8 +332,14 @@ public class MyList <E> {
 //                //si el siguiente no es nulo porque me daba un error ya que llegaba hasta el siguiente del ultimo
 //                if(temp.getNextNode()!= null){
 //                  if(temp.getIndex() > temp.getNextNode().getIndex()){
+//                    aux = new Node(temp.getMain(), temp.getIndex());
+//            
+//                    temp.setIndex(temp.getNextNode().getIndex());
+//                    temp.setMain(temp.getNextNode().getMain());
+//            
+//                    temp.getNextNode().setIndex(aux.getIndex());
+//                    temp.getNextNode().setMain(aux.getMain());
 //                      
-//                      intercambiar(temp.getIndex(), temp.getNextNode().getIndex());
 //                      System.out.println("Intercambiado "+nuevoContador);
 //                    }else{
 //                        controlador = true;

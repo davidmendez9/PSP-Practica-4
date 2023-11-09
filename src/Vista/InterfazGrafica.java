@@ -6,6 +6,7 @@
 package Vista;
 
 import Controlador.MyList;
+import Controlador.MyList.Node;
 import Modelo.Analista;
 import Modelo.Empleado;
 import Modelo.Excepciones;
@@ -154,6 +155,21 @@ public class InterfazGrafica extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
 
+    
+    public ArrayList crearArray()
+    {
+        ArrayList<Empleado> empleados = new ArrayList();
+        Node aux = lista.getFirstNode();
+        
+        while(aux != null)
+        {
+            empleados.add((Empleado) aux.getMain());
+            aux = aux.getNextNode();
+        }
+        
+        
+        return empleados;
+    }
     
 //    private int generarNumAleatorio1()
 //    {
