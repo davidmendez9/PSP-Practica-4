@@ -11,72 +11,32 @@ import Modelo.Empleado;
 import Modelo.Excepciones;
 import Modelo.Fecha;
 import Modelo.Programador;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author David
  */
-public class InterefazGrafica extends javax.swing.JFrame {
+public class PanelDatos extends javax.swing.JPanel {
 
     /**
-     * Creates new form InterefazGrafica
+     * Creates new form PanelDatos
      */
+    InterfazGrafica principal;
     
-    
-    MyList lista = new MyList();
-    
-    public InterefazGrafica() {
+    public PanelDatos(InterfazGrafica principal) {
         initComponents();
         
-        botonCalcular.setEnabled(false);
-        botonAceptar.setEnabled(false);
-        botonCancelar.setEnabled(false);
-        botonAnterior.setEnabled(false);
-         try
-        {
-            lista.add(new Analista(50, "David", 1200, 1300, new Fecha(03,11, 2015), 20, "dmenndezz"), 50);
-        }catch(Excepciones e){
-            System.out.println(e.getMessage());
-        }
-        
-        try
-        {
-            lista.add(new Analista(4, "Pablo", 1050, 1300, new Fecha(15, 11, 2016), 10, "bypablopablete"), 4);
-        }catch(Excepciones e){
-            System.out.println(e.getMessage());
-        }
-        
-        try
-        {
-            lista.add(new Programador(2, "Juan", 1200, 1450, new Fecha(9,04, 2023), 30, 5 ), 2);
-        }catch(Excepciones e){
-            System.out.println(e.getMessage());
-        }
-        
-        try
-        {
-            lista.add(new Programador(7, "Pedro", 1400, 1500, new Fecha(27, 12, 2019), 20, 2), 7);
-        }catch(Excepciones e){
-            System.out.println(e.getMessage());
-        }
-        
-        try
-        {
-            lista.add(new Analista(3, "Manuel", 1300, 2000, new Fecha(9, 11, 1999), 20, "pablete"), 3);
-        }catch(Excepciones e){
-            System.out.println(e.getMessage());
-        }
-        
-        mostrarEmpleados();
-        compruebaCumple();
+        this.principal = principal;
     }
 
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -86,26 +46,6 @@ public class InterefazGrafica extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        txtNum = new javax.swing.JTextField();
-        txtNombre = new javax.swing.JTextField();
-        txtSueldo = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        txtDia = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        txtMes = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        txtAnio = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        txtSueldoMax = new javax.swing.JTextField();
-        botonCargarEmpleados = new javax.swing.JButton();
-        botonGuardarFichero = new javax.swing.JButton();
-        botonCrearEmpleado = new javax.swing.JButton();
-        jLabel9 = new javax.swing.JLabel();
-        txtTipoEmpleado = new javax.swing.JTextField();
         botonCreadoMasivo = new javax.swing.JButton();
         botonAnterior = new javax.swing.JButton();
         botonSiguiente = new javax.swing.JButton();
@@ -116,65 +56,31 @@ public class InterefazGrafica extends javax.swing.JFrame {
         txtDatoA = new javax.swing.JTextField();
         txtDatoB = new javax.swing.JTextField();
         botonAceptar = new javax.swing.JButton();
+        txtDia = new javax.swing.JTextField();
         botonCancelar = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
         botonBorrar = new javax.swing.JButton();
+        txtMes = new javax.swing.JTextField();
         botonPrimero = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
         botonUltimo = new javax.swing.JButton();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(232, 0, 0));
-        jLabel1.setText("EMPLEADOS");
-
-        jLabel2.setText("Número:");
-
-        jLabel3.setText("Nombre:");
-
-        jLabel4.setText("Sueldo:");
-
-        txtNum.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNumActionPerformed(evt);
-            }
-        });
-
-        jLabel5.setText("Fecha:");
-
-        jLabel6.setText("/");
-
-        txtMes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtMesActionPerformed(evt);
-            }
-        });
-
-        jLabel7.setText("/");
-
-        jLabel8.setText("Sueldo Máximo:");
-
-        botonCargarEmpleados.setText("Cargar fichero");
-        botonCargarEmpleados.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonCargarEmpleadosActionPerformed(evt);
-            }
-        });
-
-        botonGuardarFichero.setText("Guardar fichero");
-        botonGuardarFichero.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonGuardarFicheroActionPerformed(evt);
-            }
-        });
-
-        botonCrearEmpleado.setText("Crear empleado");
-        botonCrearEmpleado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonCrearEmpleadoActionPerformed(evt);
-            }
-        });
-
-        jLabel9.setText("Tipo de empleado:");
+        txtAnio = new javax.swing.JTextField();
+        botonJlist = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        txtSueldoMax = new javax.swing.JTextField();
+        botonCargarEmpleados = new javax.swing.JButton();
+        botonGuardarFichero = new javax.swing.JButton();
+        botonCrearEmpleado = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        txtNum = new javax.swing.JTextField();
+        txtNombre = new javax.swing.JTextField();
+        txtSueldo = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        txtTipoEmpleado = new javax.swing.JTextField();
 
         botonCreadoMasivo.setText("Creado masivo");
         botonCreadoMasivo.addActionListener(new java.awt.event.ActionListener() {
@@ -232,10 +138,18 @@ public class InterefazGrafica extends javax.swing.JFrame {
             }
         });
 
+        jLabel6.setText("/");
+
         botonBorrar.setText("Borrar");
         botonBorrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonBorrarActionPerformed(evt);
+            }
+        });
+
+        txtMes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMesActionPerformed(evt);
             }
         });
 
@@ -246,6 +160,8 @@ public class InterefazGrafica extends javax.swing.JFrame {
             }
         });
 
+        jLabel7.setText("/");
+
         botonUltimo.setText("Ir al último");
         botonUltimo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -253,8 +169,58 @@ public class InterefazGrafica extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        botonJlist.setText("JList");
+        botonJlist.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonJlistActionPerformed(evt);
+            }
+        });
+
+        jLabel8.setText("Sueldo Máximo:");
+
+        botonCargarEmpleados.setText("Cargar fichero");
+        botonCargarEmpleados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonCargarEmpleadosActionPerformed(evt);
+            }
+        });
+
+        botonGuardarFichero.setText("Guardar fichero");
+        botonGuardarFichero.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonGuardarFicheroActionPerformed(evt);
+            }
+        });
+
+        botonCrearEmpleado.setText("Crear empleado");
+        botonCrearEmpleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonCrearEmpleadoActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(232, 0, 0));
+        jLabel1.setText("EMPLEADOS");
+
+        jLabel2.setText("Número:");
+
+        jLabel3.setText("Nombre:");
+
+        jLabel4.setText("Sueldo:");
+
+        txtNum.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNumActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setText("Fecha:");
+
+        jLabel9.setText("Tipo de empleado:");
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -291,14 +257,15 @@ public class InterefazGrafica extends javax.swing.JFrame {
                         .addGap(91, 91, 91))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(botonCrearEmpleado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(botonCreadoMasivo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(botonCalcular, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(txtTipoEmpleado, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
                                 .addComponent(txtNum, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.LEADING)))
+                                .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(botonJlist, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(botonCrearEmpleado, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(botonCreadoMasivo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(botonCalcular, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGap(29, 29, 29)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -393,28 +360,19 @@ public class InterefazGrafica extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botonBorrar)
                     .addComponent(botonPrimero)
-                    .addComponent(botonUltimo))
+                    .addComponent(botonUltimo)
+                    .addComponent(botonJlist))
                 .addContainerGap(17, Short.MAX_VALUE))
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtNumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNumActionPerformed
-
-    private void txtMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtMesActionPerformed
-
-    private void botonCargarEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCargarEmpleadosActionPerformed
+    private void botonCreadoMasivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCreadoMasivoActionPerformed
         try {
-            cargarDatosFichero();
-        } catch (IOException | ClassNotFoundException ex) {
-            Logger.getLogger(InterefazGrafica.class.getName()).log(Level.SEVERE, null, ex);
+            creadoMasivo();
+        } catch (Excepciones ex) {
+            Logger.getLogger(InterfazGrafica.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_botonCargarEmpleadosActionPerformed
+    }//GEN-LAST:event_botonCreadoMasivoActionPerformed
 
     private void botonAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAnteriorActionPerformed
         retroceder();
@@ -424,20 +382,20 @@ public class InterefazGrafica extends javax.swing.JFrame {
         avanzar();
     }//GEN-LAST:event_botonSiguienteActionPerformed
 
-    private void botonGuardarFicheroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarFicheroActionPerformed
-        guardarDatosFichero();
-    }//GEN-LAST:event_botonGuardarFicheroActionPerformed
-
     private void botonOrdenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonOrdenarActionPerformed
         try {
             ordenar();
         } catch(Exception ex){}
-        
+
     }//GEN-LAST:event_botonOrdenarActionPerformed
 
-    private void botonCrearEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCrearEmpleadoActionPerformed
-            modoCrear();
-    }//GEN-LAST:event_botonCrearEmpleadoActionPerformed
+    private void botonCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCalcularActionPerformed
+        try {
+            accionCalcular();
+        } catch (Excepciones ex) {
+            Logger.getLogger(InterfazGrafica.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_botonCalcularActionPerformed
 
     private void botonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAceptarActionPerformed
         try {
@@ -445,7 +403,7 @@ public class InterefazGrafica extends javax.swing.JFrame {
             mostrarEmpleados();
             salirModoCrear();
         } catch (Excepciones ex) {
-            Logger.getLogger(InterefazGrafica.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(InterfazGrafica.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_botonAceptarActionPerformed
 
@@ -458,19 +416,12 @@ public class InterefazGrafica extends javax.swing.JFrame {
         borrarEmpleado();
     }//GEN-LAST:event_botonBorrarActionPerformed
 
-    private void botonUltimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonUltimoActionPerformed
-        if(lista.isFirst())
-        {
-            JOptionPane.showMessageDialog(this, "Ya estás en el último nodo");
-        }
-        else
-        {
-            irPrimero();
-        }
-    }//GEN-LAST:event_botonUltimoActionPerformed
+    private void txtMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtMesActionPerformed
 
     private void botonPrimeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonPrimeroActionPerformed
-        if(lista.isLast())
+        if(principal.lista.isLast())
         {
             JOptionPane.showMessageDialog(this, "Ya estás en el primer nodo");
         }
@@ -480,56 +431,49 @@ public class InterefazGrafica extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_botonPrimeroActionPerformed
 
-    private void botonCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCalcularActionPerformed
-        try {
-            accionCalcular();
-        } catch (Excepciones ex) {
-            Logger.getLogger(InterefazGrafica.class.getName()).log(Level.SEVERE, null, ex);
+    private void botonUltimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonUltimoActionPerformed
+        if(principal.lista.isFirst())
+        {
+            JOptionPane.showMessageDialog(this, "Ya estás en el último nodo");
         }
-    }//GEN-LAST:event_botonCalcularActionPerformed
-
-    private void botonCreadoMasivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCreadoMasivoActionPerformed
-        try {
-            creadoMasivo();
-        } catch (Excepciones ex) {
-            Logger.getLogger(InterefazGrafica.class.getName()).log(Level.SEVERE, null, ex);
+        else
+        {
+            irPrimero();
         }
-    }//GEN-LAST:event_botonCreadoMasivoActionPerformed
+    }//GEN-LAST:event_botonUltimoActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+    private void botonJlistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonJlistActionPerformed
+        principal.Jlist = new JlistPane(principal);
+        
+        principal.panelDatos.setVisible(false);
+        principal.add(principal.Jlist);
+        principal.Jlist.setVisible(true);
+        
+        
+
+        
+    }//GEN-LAST:event_botonJlistActionPerformed
+
+    private void botonCargarEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCargarEmpleadosActionPerformed
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(InterefazGrafica.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(InterefazGrafica.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(InterefazGrafica.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(InterefazGrafica.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            cargarDatosFichero();
+        } catch (IOException | ClassNotFoundException ex) {
+            Logger.getLogger(InterfazGrafica.class.getName()).log(Level.SEVERE, null, ex);
         }
-        //</editor-fold>
+    }//GEN-LAST:event_botonCargarEmpleadosActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new InterefazGrafica().setVisible(true);
-            }
-        });
-    }
+    private void botonGuardarFicheroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarFicheroActionPerformed
+        guardarDatosFichero();
+    }//GEN-LAST:event_botonGuardarFicheroActionPerformed
+
+    private void botonCrearEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCrearEmpleadoActionPerformed
+        modoCrear();
+    }//GEN-LAST:event_botonCrearEmpleadoActionPerformed
+
+    private void txtNumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNumActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAceptar;
@@ -541,6 +485,7 @@ public class InterefazGrafica extends javax.swing.JFrame {
     private javax.swing.JButton botonCreadoMasivo;
     private javax.swing.JButton botonCrearEmpleado;
     private javax.swing.JButton botonGuardarFichero;
+    private javax.swing.JButton botonJlist;
     private javax.swing.JButton botonOrdenar;
     private javax.swing.JButton botonPrimero;
     private javax.swing.JButton botonSiguiente;
@@ -567,47 +512,65 @@ public class InterefazGrafica extends javax.swing.JFrame {
     private javax.swing.JTextField txtSueldoMax;
     private javax.swing.JTextField txtTipoEmpleado;
     // End of variables declaration//GEN-END:variables
-
-    
-    private int generarNumAleatorio1()
+      public int generarNumAleatorio1()
     {
         int valorEntero = (int) (Math.floor(Math.random()*(1000-2000+1)+2000));
         
         return valorEntero;
     }
     
-    private int generarNumAleatorioMasivo()
+    public int generarNumAleatorioMasivo()
     {
         int valorEntero = (int) (Math.floor(Math.random()*(2001-1000000+1)+1000000));
         
         return valorEntero;
     }
+
+    public JButton getBotonAnterior() {
+        return botonAnterior;
+    }
+
+    public JButton getBotonPrimero() {
+        return botonPrimero;
+    }
+
+    public JButton getBotonSiguiente() {
+        return botonSiguiente;
+    }
+
+    public JButton getBotonAceptar() {
+        return botonAceptar;
+    }
+
+    public JButton getBotonCancelar() {
+        return botonCancelar;
+    }
     
-    private void irPrimero()
+    public void irPrimero()
     {
-        while(lista.isFirst() == false)
+        while(principal.lista.isFirst() == false)
         {
-            lista.avanzar();
+            principal.lista.avanzar();
         }
         botonSiguiente.setEnabled(false);
         botonAnterior.setEnabled(true);
         mostrarEmpleados();
     }
     
-    private void irUltimo()
+    public void irUltimo()
     {
-        while(lista.isLast() == false)
+        while(principal.lista.isLast() == false)
         {
-            lista.retroceder();
+            principal.lista.retroceder();
         }
         botonSiguiente.setEnabled(true);
         botonAnterior.setEnabled(false);
         mostrarEmpleados();
     }
     
-    private void compruebaCumple()
+    public void compruebaCumple()
     {
-        Empleado e1 = (Empleado) lista.getActualNode().getMain();
+        Empleado e1 = (Empleado) principal.lista.getActualNode().getMain();
         if(txtTipoEmpleado.getText().equals("Analista"))
         {
             Analista analista = (Analista)e1;
@@ -648,7 +611,7 @@ public class InterefazGrafica extends javax.swing.JFrame {
         }
     }
     
-    private void modoCrear()
+    public void modoCrear()
     {
         vaciarCasillas();
         txtNum.setEnabled(false);
@@ -665,7 +628,7 @@ public class InterefazGrafica extends javax.swing.JFrame {
         cambiarLabels();
     }
     
-    private void salirModoCrear()
+    public void salirModoCrear()
     {
         txtNum.setEnabled(true);
         botonCargarEmpleados.setEnabled(true);
@@ -680,41 +643,50 @@ public class InterefazGrafica extends javax.swing.JFrame {
         botonCancelar.setEnabled(false);
     }
     
-    private void cambiarLabels()
+    public void cambiarLabels()
     {
         labelDato1.setText("Dato 1:");
         labelDato2.setText("Dato 2:");
     }
     
-    private void creadoMasivo() throws Excepciones
+    public void creadoMasivo() throws Excepciones
     {
-        lista = new MyList();
+        principal.lista = new MyList();
         int cont = 0;
         do
         {
             int num = generarNumAleatorioMasivo();
-
-
-            lista.add(new Analista(num, "Empleado "+cont, 1, 2, new Fecha(1, 1, 2023), 0, ""), num);
             
+            while(principal.lista.existe(num))
+            {
+                num = generarNumAleatorioMasivo();
+            }
+            
+            principal.lista.add(new Analista(num, "Empleado "+cont, 1, 2, new Fecha(1, 1, 2023), 0, ""), num);
+            
+            System.out.println("Contador: "+cont);
             cont++;
             
         }while(cont < 100000);
         cont = 0;
         do
         {
-            int num = (int) (Math.floor(Math.random()*(2001-1000000+1)+1000000));
+            int num = (int) (Math.floor(Math.random()*(1-2000+1)+2000));
+            while(principal.lista.existe(num))
+            {
+                num = (int) (Math.floor(Math.random()*(1-2000+1)+2000));
+            }
             
+            principal.lista.add(new Analista(num, "Empleado "+cont, 1, 2, new Fecha(1, 1, 2023), 0, ""), num);
             
-            lista.add(new Analista(num, "Empleado "+cont, 1, 2, new Fecha(1, 1, 2023), 0, ""), num);
-            
+            System.out.println("Contador: "+cont);
             cont++;
         }while(cont < 20);
         
         mostrarEmpleados();
     }
     
-    private void crearEmpleado() throws Excepciones
+    public void crearEmpleado() throws Excepciones
     {
         cambiarLabels();
         int num = generarNumAleatorio1();
@@ -734,7 +706,7 @@ public class InterefazGrafica extends javax.swing.JFrame {
             {
                 try
                 {
-                    lista.add(new Analista(num, txtNombre.getText(), Integer.parseInt(txtSueldo.getText()), Integer.parseInt(txtSueldoMax.getText()), new Fecha(Integer.parseInt(txtDia.getText()), Integer.parseInt(txtMes.getText()), Integer.parseInt(txtAnio.getText())), Integer.parseInt(txtDatoA.getText()), txtDatoB.getText()), num);
+                    principal.lista.add(new Analista(num, txtNombre.getText(), Integer.parseInt(txtSueldo.getText()), Integer.parseInt(txtSueldoMax.getText()), new Fecha(Integer.parseInt(txtDia.getText()), Integer.parseInt(txtMes.getText()), Integer.parseInt(txtAnio.getText())), Integer.parseInt(txtDatoA.getText()), txtDatoB.getText()), num);
                 }catch(Excepciones e){
                     JOptionPane.showMessageDialog(this, e.getMessage());
                 }  
@@ -743,7 +715,7 @@ public class InterefazGrafica extends javax.swing.JFrame {
             {
                 try
                 {
-                    lista.add(new Programador(num, txtNombre.getText(), Integer.parseInt(txtSueldo.getText()), Integer.parseInt(txtSueldoMax.getText()), new Fecha(Integer.parseInt(txtDia.getText()), Integer.parseInt(txtMes.getText()), Integer.parseInt(txtAnio.getText())), Integer.parseInt(txtDatoA.getText()), Integer.parseInt(txtDatoB.getText())), num);
+                    principal.lista.add(new Programador(num, txtNombre.getText(), Integer.parseInt(txtSueldo.getText()), Integer.parseInt(txtSueldoMax.getText()), new Fecha(Integer.parseInt(txtDia.getText()), Integer.parseInt(txtMes.getText()), Integer.parseInt(txtAnio.getText())), Integer.parseInt(txtDatoA.getText()), Integer.parseInt(txtDatoB.getText())), num);
                 }catch(Excepciones e){
                     JOptionPane.showMessageDialog(this, e.getMessage());
                 }
@@ -753,7 +725,7 @@ public class InterefazGrafica extends javax.swing.JFrame {
         
     }
     
-    private void vaciarCasillas()
+    public void vaciarCasillas()
     {
         txtAnio.setText("");
         txtMes.setText("");
@@ -768,9 +740,9 @@ public class InterefazGrafica extends javax.swing.JFrame {
         
     }
     
-    private void mostrarEmpleados()
+    public void mostrarEmpleados()
     {
-        Empleado e1 = (Empleado) lista.getActualNode().getMain();
+        Empleado e1 = (Empleado) principal.lista.getActualNode().getMain();
         
         if(e1.getClass().getSimpleName().contains("Analista"))
         {
@@ -799,25 +771,25 @@ public class InterefazGrafica extends javax.swing.JFrame {
     
     public void borrarEmpleado()
     {
-        if(lista.isFirst())
+        if(principal.lista.isFirst())
         {
-            lista.removeElement();
-            lista.retroceder();
+            principal.lista.removeElement();
+            principal.lista.retroceder();
             mostrarEmpleados();
         }
-        else if(lista.isLast())
+        else if(principal.lista.isLast())
         {
-            lista.removeElement();
-            lista.avanzar();
+            principal.lista.removeElement();
+            principal.lista.avanzar();
             mostrarEmpleados();
         }
         else
         {
-            lista.removeElement();
-            lista.avanzar();
+            principal.lista.removeElement();
+            principal.lista.avanzar();
             mostrarEmpleados();
         }
-            if(lista.isFirst() && lista.isLast())
+            if(principal.lista.isFirst() && principal.lista.isLast())
             {
                 botonSiguiente.setEnabled(false);
                 botonAnterior.setEnabled(false);
@@ -826,10 +798,10 @@ public class InterefazGrafica extends javax.swing.JFrame {
             
     }
     
-    private void accionCalcular() throws Excepciones
+    public void accionCalcular() throws Excepciones
     {
         
-        Empleado e1 = (Empleado) lista.getActualNode().getMain();
+        Empleado e1 = (Empleado) principal.lista.getActualNode().getMain();
         
         if(txtTipoEmpleado.getText().equals("Analista"))
         {
@@ -875,28 +847,28 @@ public class InterefazGrafica extends javax.swing.JFrame {
         }
     }
     
-    private void ordenar()
+    public void ordenar()
     {
-        lista.ordenar();
+        principal.lista.ordenar();
         mostrarEmpleados();
     }
     
-    private void guardarDatosFichero()
+    public void guardarDatosFichero()
     {
-        lista.crearFichero();
+        principal.lista.crearFichero();
         JOptionPane.showMessageDialog(this, "Datos guardados en fichero.dat");
     }
     
-    private void cargarDatosFichero() throws ClassNotFoundException, IOException 
+    public void cargarDatosFichero() throws ClassNotFoundException, IOException 
     {
         ArrayList<Empleado> datosFichero = new ArrayList();
        
-        if(lista.existeFichero())
+        if(principal.lista.existeFichero())
         {
-            datosFichero = lista.deserializar();
+            datosFichero = principal.lista.deserializar();
             borrarLista();
             for(int i = 0; i < datosFichero.size(); i++){
-                lista.add(datosFichero.get(i), datosFichero.get(i).getNumero());
+                principal.lista.add(datosFichero.get(i), datosFichero.get(i).getNumero());
             }
             JOptionPane.showMessageDialog(this, "Datos cargados con éxito");
             mostrarEmpleados();
@@ -907,9 +879,9 @@ public class InterefazGrafica extends javax.swing.JFrame {
         }
     }
     
-    private void diferenciarTipo()
+    public void diferenciarTipo()
     {
-        Empleado e1 = (Empleado) lista.getActualNode().getMain();
+        Empleado e1 = (Empleado) principal.lista.getActualNode().getMain();
         if(e1.getClass().getSimpleName().contains("Analista"))
         {
             labelDato1.setText("Plus Anual:");
@@ -922,19 +894,19 @@ public class InterefazGrafica extends javax.swing.JFrame {
         }
     }
     
-    private void borrarLista()
+    public void borrarLista()
     {
-        lista = new MyList();
+        principal.lista = new MyList();
     }
     
-    private void avanzar()
+    public void avanzar()
     {
         
-        lista.avanzar();
+        principal.lista.avanzar();
 
         mostrarEmpleados();
         
-        if(lista.isFirst())
+        if(principal.lista.isFirst())
         {
             botonSiguiente.setEnabled(false);
         }
@@ -942,18 +914,19 @@ public class InterefazGrafica extends javax.swing.JFrame {
         compruebaCumple();
     }
     
-    private void retroceder()
+    public void retroceder()
     {
        
-        lista.retroceder();
+        principal.lista.retroceder();
         
         mostrarEmpleados();
         
-        if(lista.isLast())
+        if(principal.lista.isLast())
         {
             botonAnterior.setEnabled(false);
         }
         botonSiguiente.setEnabled(true);
         compruebaCumple();
     }
+
 }
