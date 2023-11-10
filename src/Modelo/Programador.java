@@ -55,6 +55,11 @@ public class Programador extends Empleado implements IFecha {
         GregorianCalendar fechaActual = new GregorianCalendar();
         return fechaActual.get(ANIO);
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + "Programador{" + "sueldoExtra=" + sueldoExtra + ", numeroProgramas=" + numeroProgramas + '}';
+    }
     
     public boolean cumpleMes()
     {

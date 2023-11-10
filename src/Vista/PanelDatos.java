@@ -533,9 +533,14 @@ public class PanelDatos extends javax.swing.JPanel {
     {
         ArrayList list = principal.crearArray();
         
+        long startTime = System.nanoTime();
         Collections.sort(list);
-        
+        long endTime = System.nanoTime();
+        long elapsedTime = endTime - startTime;
+       
+        double elapsedTimeInSecond = (double) elapsedTime / 1_000_000_000;
         System.out.println("ArrayList ordenado");
+        JOptionPane.showMessageDialog(this, "Ordenado en "+(elapsedTimeInSecond)+" segundos");
     }
     
     public int generarNumAleatorio1()
@@ -875,7 +880,13 @@ public class PanelDatos extends javax.swing.JPanel {
     
     public void ordenar()
     {
+        long startTime = System.nanoTime();
         principal.lista.ordenar();
+        long endTime = System.nanoTime();
+        long elapsedTime = endTime - startTime;
+        double elapsedTimeInSecond = (double) elapsedTime / 1_000_000_000;
+        JOptionPane.showMessageDialog(this, "Ordenado en "+(elapsedTimeInSecond)+" segundos");
+        
         mostrarEmpleados();
     }
     

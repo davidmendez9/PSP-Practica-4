@@ -13,7 +13,7 @@ import java.io.Serializable;
  *
  * @author David
  */
-public abstract class Empleado implements Serializable {
+public abstract class Empleado implements Serializable, java.lang.Comparable {
     private int numero;
     private transient String nombre; // Marcar como transient para evitar la serialización
     private double sueldo;
@@ -103,7 +103,25 @@ public abstract class Empleado implements Serializable {
 
     @Override
     public String toString() {
-        return "Empleado{" + "numero=" + numero + ", nombre=" + nombre + ", sueldo=" + sueldo + ", sueldoMaximo=" + sueldoMaximo + ", fechaAlta=" + fechaAlta + '}';
+        return "Empleado{" + "numero=" + numero + ", nombre=" + nombre + ", sueldo=" + sueldo + ", sueldoMaximo=" + sueldoMaximo + ", fechaAlta=" + fechaAlta.dia+"/"+fechaAlta.mes+"/"+fechaAlta.anio + '}';
+    }
+
+    @Override
+    public int compareTo(Object t) {
+            Empleado aux = (Empleado)t;
+            
+            if(this.getNumero() > aux.getNumero())
+            {
+                return 1;
+            }
+            else if(this.getNumero() == aux.getNumero())
+            {
+                return 0;
+            }
+            else
+            {
+                return -1;
+            }
     }
 
     

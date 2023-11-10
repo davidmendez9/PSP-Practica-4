@@ -60,12 +60,10 @@
                           <Component id="txtTipoEmpleado" alignment="0" pref="138" max="32767" attributes="0"/>
                           <Component id="txtNum" alignment="0" max="32767" attributes="0"/>
                           <Component id="txtNombre" alignment="0" max="32767" attributes="0"/>
-                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="botonOrdenarArrayList" alignment="0" max="32767" attributes="0"/>
-                              <Component id="botonJlist" alignment="0" max="32767" attributes="0"/>
-                              <Component id="botonCrearEmpleado" alignment="0" max="32767" attributes="0"/>
-                              <Component id="botonCreadoMasivo" alignment="0" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="botonOrdenarArrayList" alignment="0" max="32767" attributes="0"/>
+                          <Component id="botonJlist" alignment="0" max="32767" attributes="0"/>
+                          <Component id="botonCrearEmpleado" alignment="0" max="32767" attributes="0"/>
+                          <Component id="botonCreadoMasivo" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
